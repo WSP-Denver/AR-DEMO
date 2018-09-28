@@ -1,0 +1,47 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/app-layout/app-header/app-header.js">
+<link rel="import" href="../../bower_components/app-layout/app-toolbar/app-toolbar.js">
+<link rel="import" href="../ar-view/ar-view.html">
+
+<dom-module id="ar-app">
+    <template>
+
+        <style>
+            app-header {
+                background: #3f51b5;
+                color: #fff;
+                left: 0;
+                position: fixed;
+                top: 0;
+                width: 100%;
+            }
+            [main-title] {
+                margin-left: 64px;
+                font-size: 32px;
+                font-weight: 300;
+            }
+        </style>
+
+
+        <app-header>
+            <app-toolbar>
+                <div main-title>Demo</div>
+            </app-toolbar>
+        </app-header>
+
+        <ar-view></ar-view>
+        
+  </template>
+
+  <script>
+      Polymer({
+          is: 'ar-app',
+          properties: {
+              prop1: {
+                  type: String,
+                  value: 'ar-app'
+              }
+          }
+      })
+  </script>
+</dom-module>

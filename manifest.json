@@ -1,0 +1,7 @@
+{
+  "name": "ar-demo",
+  "short_name": "ar-demo",
+  "description": "View and provide feedback on infrastructure through AR on the web.",
+  "start_url": "/",
+  "display": "standalone"
+}

@@ -1,0 +1,15 @@
+{
+  "name": "ar-demo",
+  "description": "View and provide feedback on infrastructure through AR on the web.",
+  "main": "index.html",
+  "dependencies": {
+    "polymer": "Polymer/polymer#^2.0.0",
+    "app-layout": "PolymerElements/app-layout#^3.0.1",
+    "polymerfire": "FirebaseExtended/polymerfire#^2.2.1",
+    "iron-flex-layout": "PolymerElements/iron-flex-layout#2.0.0"
+  },
+  "devDependencies": {
+    "web-component-tester": "Polymer/web-component-tester#^6.0.0",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.0"
+  }
+}

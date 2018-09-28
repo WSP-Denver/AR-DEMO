@@ -1,0 +1,51 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../aframe-element/aframe-element.html">
+<link rel="import" href="../ar-element/ar-element.html">
+
+<dom-module id="ar-view">
+    <template>
+        <style>
+            :host {
+                overflow: hidden;
+                position: relative;
+            }
+            a-scene {
+                @apply --layout;
+            }
+        </style>
+        <a-scene
+            embedded
+            arjs="sourceType: webcam; trackingMethod: best;">
+            <a-entity
+                light
+                position="1 2 1">
+            </a-entity>
+            <a-marker-camera
+                preset="hiro">
+                <a-box
+                    scale=".5 .5 .5">
+                </a-box>
+            </a-marker-camera>
+        </a-scene>
+    </template>
+    <script>
+        Polymer({
+            is: 'ar-view',
+            properties: {
+                model: {
+                    type    : String,
+                    value   : '/src/ar-view/resources/models/bridge/bridge_exp.glb'
+                },
+                gltfUrl: {
+                    type    : String,
+                    computed: '_computeGltfUrl(model)'
+                }
+            },
+
+            _computeGltfUrl: function(path) {
+                return this.resolveUrl(path)
+            }
+        })
+    </script>
+</dom-module>
