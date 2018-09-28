@@ -1,6 +1,8 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/app-layout/app-header/app-header.js">
 <link rel="import" href="../../bower_components/app-layout/app-toolbar/app-toolbar.js">
+<link rel="import" href="../../bower_components/firebase/firebase-app.js">
+<link rel="import" href="../../bower_components/firebase/firebase-auth.js">
 <link rel="import" href="../ar-view/ar-view.html">
 
 <dom-module id="ar-app">
@@ -22,6 +24,20 @@
             }
         </style>
 
+        <firebase-app
+            auth-domain="wsp-smart-cities-ar-demo.firebaseapp.com"
+            database-url="https://wsp-smart-cities-ar-demo.firebaseio.com"
+            api-key="AIzaSyDWbEdCP_5GRwd7W7F9ZiRBmW8LfPsIGqw"
+            storage-bucket="wsp-smart-cities-ar-demo.appspot.com"
+            messaging-sender-id="275417184748"
+            project-id="wsp-smart-cities-ar-demo">
+        </firebase-app>
+        <firebase-auth
+            id="auth"
+            user="jgipper@gmail.com"
+            provider="google"
+            on-error="handleError">
+        </firebase-auth>
 
         <app-header>
             <app-toolbar>
@@ -41,7 +57,21 @@
                   type: String,
                   value: 'ar-app'
               }
-          }
+          },
+
+          ready: function(e) {
+            this.$.auth.signInWithPopup()
+                .then(function(response) {
+                    this.info(response)
+                })
+                .catch(function(error) {
+                    this.error(error)
+                });
+          },
+
+          handleError: function(e) {
+              this.debug(e);
+          },
       })
   </script>
 </dom-module>
