@@ -1,8 +1,9 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/app-layout/app-header/app-header.js">
 <link rel="import" href="../../bower_components/app-layout/app-toolbar/app-toolbar.js">
-<link rel="import" href="../../bower_components/firebase/firebase-app.js">
-<link rel="import" href="../../bower_components/firebase/firebase-auth.js">
+<link rel="import" href="../../bower_components/polymerfire/firebase-app.html">
+<link rel="import" href="../../bower_components/polymerfire/firebase-auth.html">
+<link rel="import" href="../../bower_components/polymerfire/firebase-document">
 <link rel="import" href="../ar-view/ar-view.html">
 
 <dom-module id="ar-app">
@@ -34,10 +35,14 @@
         </firebase-app>
         <firebase-auth
             id="auth"
-            user="jgipper@gmail.com"
+            user="{{user}}"
             provider="google"
             on-error="handleError">
         </firebase-auth>
+        <firebase-document
+            path="/votes"
+            data="{{votesData}}">
+        </firebase-document>
 
         <app-header>
             <app-toolbar>
@@ -54,24 +59,27 @@
           is: 'ar-app',
           properties: {
               prop1: {
-                  type: String,
-                  value: 'ar-app'
+                  type  : String,
+                  value : 'ar-app'
+              },
+              user: {
+                  type  : Object
               }
           },
 
           ready: function(e) {
             this.$.auth.signInWithPopup()
                 .then(function(response) {
-                    this.info(response)
+                    console.info(response)
                 })
                 .catch(function(error) {
-                    this.error(error)
+                    console.error(error)
                 });
           },
 
           handleError: function(e) {
-              this.debug(e);
-          },
+              console.debug(e);
+          }
       })
   </script>
 </dom-module>
